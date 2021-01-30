@@ -48,6 +48,18 @@ class InfectionAction implements Action
      */
     public function execute(Config $config, IO $io, Repository $repository, Config\Action $action): void
     {
+        $options = $action->getOptions()->getAll();
+        $infectionCli = $options['infection'] ?? './vendor/bin/infection';
+        $infectionArgs = (isset($options['args']) && is_array($options['args'])) ? $options['args'] : [];
+
+        $changedPHPFiles = $repository->getIndexOperator()->getStagedFilesOfType('php');
+        $infectionArgs[] = '--filter='.implode(',', $changedPHPFiles);
+
+        $result = $this->invokeInfectionProcess($infectionCli, $infectionArgs);
+        if(!$result->isSuccessful()) {
+            $io->writeError($result->getStdOut());
+            throw new ActionFailed("Running Infection failed! Check error output above");
+        }
     }
 
     /**
@@ -58,7 +70,7 @@ class InfectionAction implements Action
     protected function invokeInfectionProcess(string $infectionCli, array $infectionArgs): Result
     {
         $infectionCli = escapeshellcmd($infectionCli);
-        foreach($infectionArgs as $infectionArg) {
+        foreach ($infectionArgs as $infectionArg) {
             $infectionCli .= ' ' . escapeshellarg($infectionArg);
         }
 
