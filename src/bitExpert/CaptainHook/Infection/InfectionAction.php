@@ -24,19 +24,6 @@ use SebastianFeldmann\Git\Repository;
 class InfectionAction implements Action
 {
     /**
-     * @var Processor
-     */
-    private $runner;
-
-    /**
-     * Creates new {@link \bitExpert\CaptainHook\Infection\InfectionAction}.
-     */
-    public function __construct()
-    {
-        $this->runner = new Processor();
-    }
-
-    /**
      * Executes the action.
      *
      * @param \CaptainHook\App\Config $config
@@ -53,10 +40,15 @@ class InfectionAction implements Action
         $infectionArgs = (isset($options['args']) && is_array($options['args'])) ? $options['args'] : [];
 
         $changedPHPFiles = $repository->getIndexOperator()->getStagedFilesOfType('php');
-        $infectionArgs[] = '--filter='.implode(',', $changedPHPFiles);
+        if (count($changedPHPFiles) > 0) {
+            array_walk($changedPHPFiles, function (&$item, $key) {
+                $item = escapeshellarg($item);
+            });
+            $infectionArgs[] = '--filter='.implode(',', $changedPHPFiles);
+        }
 
         $result = $this->invokeInfectionProcess($infectionCli, $infectionArgs);
-        if(!$result->isSuccessful()) {
+        if (!$result->isSuccessful()) {
             $io->writeError($result->getStdOut());
             throw new ActionFailed("Running Infection failed! Check error output above");
         }
@@ -71,9 +63,17 @@ class InfectionAction implements Action
     {
         $infectionCli = escapeshellcmd($infectionCli);
         foreach ($infectionArgs as $infectionArg) {
-            $infectionCli .= ' ' . escapeshellarg($infectionArg);
+            $infectionCli .= ' ' . $infectionArg;
         }
 
-        return $this->runner->run($infectionCli);
+        return $this->getProcessor()->run($infectionCli);
+    }
+
+    /**
+     * @return Processor
+     */
+    protected function getProcessor(): Processor
+    {
+        return new Processor();
     }
 }
