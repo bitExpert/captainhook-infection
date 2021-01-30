@@ -4,6 +4,10 @@ This package provides an action for [Captain Hook](https://github.com/CaptainHoo
 which will invoke [InfectionPHP](https://infection.github.io) for all changed files of a commit. Running Infection only 
 against the changed files will result in a faster execution of Infection which is ideal when running it as a pre-commit hook.
 
+[![Build Status](https://github.com/bitExpert/captainhook-infection/workflows/ci/badge.svg?branch=master)](https://github.com/bitExpert/captainhook-infection/actions)
+[![Coverage Status](https://coveralls.io/repos/github/bitExpert/captainhook-infection/badge.svg?branch=master)](https://coveralls.io/github/bitExpert/captainhook-infection?branch=master)
+[![Infection MSI](https://badge.stryker-mutator.io/github.com/bitExpert/captainhook-infection/master)](https://infection.github.io)
+
 ## Installation
 
 The preferred way of installing `bitexpert/captainhook-infection` is through Composer.
