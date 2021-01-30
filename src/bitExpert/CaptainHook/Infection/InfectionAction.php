@@ -56,7 +56,7 @@ class InfectionAction implements Action
 
     /**
      * @param string $infectionCli
-     * @param array $infectionArgs
+     * @param array<string> $infectionArgs
      * @return Result
      */
     protected function invokeInfectionProcess(string $infectionCli, array $infectionArgs): Result
