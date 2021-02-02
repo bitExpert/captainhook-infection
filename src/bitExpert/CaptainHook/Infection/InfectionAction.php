@@ -49,8 +49,17 @@ class InfectionAction implements Action
 
         $result = $this->invokeInfectionProcess($infectionCli, $infectionArgs);
         if (!$result->isSuccessful()) {
-            $io->writeError($result->getStdOut());
-            throw new ActionFailed("Running Infection failed! Check error output above");
+            $errorMessage = '<error>Running Infection failed!</error>';
+
+            if (!empty($result->getStdOut())) {
+                $errorMessage .= PHP_EOL . $result->getStdOut();
+            }
+
+            if (!empty($result->getStdErr())) {
+                $errorMessage .= PHP_EOL . $result->getStdErr();
+            }
+
+            throw new ActionFailed($errorMessage);
         }
     }
 
