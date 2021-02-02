@@ -80,18 +80,34 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function failingInfectionWillThrowException()
+    public function outputFromInfectionShouldBePrinted()
     {
-        $this->expectException(ActionFailed::class);
-
-        $result = new Result('./vendor/bin/infection', 1);
+        $result = new Result('./vendor/bin/infection', 0, 'output');
 
         $this->hook->expects(self::once())
             ->method('invokeInfectionProcess')
             ->willReturn($result);
 
         $this->io->expects(self::once())
-            ->method('writeError');
+            ->method('write')
+            ->with('output');
+
+        $this->hook->execute($this->config, $this->io, $this->repository, $this->action);
+    }
+
+    /**
+     * @test
+     */
+    public function failingInfectionWillThrowException()
+    {
+        $this->expectException(ActionFailed::class);
+        $this->expectExceptionMessageMatches('/<error>.+<\/error>\noutput\nerror/');
+
+        $result = new Result('./vendor/bin/infection', 1, 'output', 'error');
+
+        $this->hook->expects(self::once())
+            ->method('invokeInfectionProcess')
+            ->willReturn($result);
 
         $this->hook->execute($this->config, $this->io, $this->repository, $this->action);
     }
@@ -139,11 +155,11 @@ class InfectionActionUnitTest extends TestCase
 
         $this->action->expects(self::once())
             ->method('getOptions')
-            ->willReturn(new Options(['args' => ['-j 4']]));
+            ->willReturn(new Options(['args' => ['-j4']]));
 
         $this->hook->expects(self::once())
             ->method('invokeInfectionProcess')
-            ->with('./vendor/bin/infection', ['-j 4'])
+            ->with('./vendor/bin/infection', ['-j4'])
             ->willReturn($result);
 
         $this->hook->execute($this->config, $this->io, $this->repository, $this->action);
@@ -158,7 +174,7 @@ class InfectionActionUnitTest extends TestCase
 
         $this->action->expects(self::once())
             ->method('getOptions')
-            ->willReturn(new Options(['args' => '-j 4']));
+            ->willReturn(new Options(['args' => '-j4']));
 
         $this->hook->expects(self::once())
             ->method('invokeInfectionProcess')

@@ -64,7 +64,7 @@ option like this:
         "action": "\\bitExpert\\CaptainHook\\Infection\\InfectionAction",
         "options": {
             "args": [
-                "-j 4"
+                "-j4"
             ]
         }
       }
