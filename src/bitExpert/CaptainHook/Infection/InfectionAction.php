@@ -61,6 +61,10 @@ class InfectionAction implements Action
 
             throw new ActionFailed($errorMessage);
         }
+
+        if (!empty($result->getStdOut())) {
+            $io->write($result->getStdOut());
+        }
     }
 
     /**

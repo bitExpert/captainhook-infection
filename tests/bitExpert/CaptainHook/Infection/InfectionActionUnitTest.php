@@ -80,6 +80,24 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
+    public function outputFromInfectionShouldBePrinted()
+    {
+        $result = new Result('./vendor/bin/infection', 0, 'output');
+
+        $this->hook->expects(self::once())
+            ->method('invokeInfectionProcess')
+            ->willReturn($result);
+
+        $this->io->expects(self::once())
+            ->method('write')
+            ->with('output');
+
+        $this->hook->execute($this->config, $this->io, $this->repository, $this->action);
+    }
+
+    /**
+     * @test
+     */
     public function failingInfectionWillThrowException()
     {
         $this->expectException(ActionFailed::class);
