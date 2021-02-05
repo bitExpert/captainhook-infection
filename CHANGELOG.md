@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.3.0
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- [#2](https://github.com/bitExpert/captainhook-infection/pull/2) Replace Phing with Composer scripts
+
+### Fixed
+
+- Nothing.
+
 ## 0.2.0
 
 ### Added
