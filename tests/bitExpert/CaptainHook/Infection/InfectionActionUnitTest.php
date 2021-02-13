@@ -28,29 +28,28 @@ use SebastianFeldmann\Git\Repository;
 class InfectionActionUnitTest extends TestCase
 {
     /**
-     * @var Config|MockObject
+     * @var MockObject&Config
      */
     private $config;
     /**
-     * @var IO|MockObject
+     * @var MockObject&IO
      */
     private $io;
     /**
-     * @var Repository|MockObject
+     * @var MockObject&Repository
      */
     private $repository;
     /**
-     * @var Action|MockObject
+     * @var MockObject&Action
      */
     private $action;
     /**
-     * @var ValidateAuthorAction
+     * @var MockObject&InfectionAction
      */
     private $hook;
 
     /**
      * {@inheritDoc}
-     * @throws ReflectionException
      */
     public function setUp(): void
     {
@@ -66,7 +65,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function invokingInfectionSuccessfullWillNotThrowException()
+    public function invokingInfectionSuccessfullWillNotThrowException(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
@@ -80,7 +79,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function outputFromInfectionShouldBePrinted()
+    public function outputFromInfectionShouldBePrinted(): void
     {
         $result = new Result('./vendor/bin/infection', 0, 'output');
 
@@ -98,7 +97,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function failingInfectionWillThrowException()
+    public function failingInfectionWillThrowException(): void
     {
         $this->expectException(ActionFailed::class);
         $this->expectExceptionMessageMatches('/<error>.+<\/error>\noutput\nerror/');
@@ -115,7 +114,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function invokingInfectionWithDefaultPathIfNoConfigOptionWasPassed()
+    public function invokingInfectionWithDefaultPathIfNoConfigOptionWasPassed(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
@@ -130,7 +129,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function invokingInfectionWithCustomPath()
+    public function invokingInfectionWithCustomPath(): void
     {
         $result = new Result('infection.phar', 0);
 
@@ -149,7 +148,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function invokingInfectionWithAdditionalParamsAsArraySucceeds()
+    public function invokingInfectionWithAdditionalParamsAsArraySucceeds(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
@@ -168,7 +167,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function invokingInfectionWithAdditionalParamsAsStringFails()
+    public function invokingInfectionWithAdditionalParamsAsStringFails(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
@@ -187,7 +186,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function stagedGitFilesArePassedToInfectionViaFilterParam()
+    public function stagedGitFilesArePassedToInfectionViaFilterParam(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
@@ -211,7 +210,7 @@ class InfectionActionUnitTest extends TestCase
     /**
      * @test
      */
-    public function cliPathAndParamsGetShellEscapedBeforeInvokingInfection()
+    public function cliPathAndParamsGetShellEscapedBeforeInvokingInfection(): void
     {
         $result = new Result('./vendor/bin/infection', 0);
 
