@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.4.0
+
+### Added
+
+- [#4](https://github.com/bitexpert/captainhook-infection/pull/4) Add phly/keep-a-changelog dev dependency
+- [#3](https://github.com/bitexpert/captainhook-infection/pull/3) Add phpstan/phpstan-strict-rules dependency
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.3.0
 
 ### Added
