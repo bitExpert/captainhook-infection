@@ -45,5 +45,8 @@
         "test": "vendor/bin/phpunit",
         "infection": "vendor/bin/infection -j4 --ignore-msi-with-no-mutations --only-covered",
         "coverage": "vendor/bin/phpunit --coverage-clover clover.xml"
+    },
+    "config": {
+        "sort-packages": true
     }
 }
