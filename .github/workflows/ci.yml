@@ -45,6 +45,9 @@ jobs:
           composer require --prefer-lowest captainhook/captainhook
           composer require --prefer-lowest --dev captainhook/plugin-composer
 
+      - name: Composer license check
+        run: composer check-license
+
       - name: Codesniffer
         run: composer cs-check
 
