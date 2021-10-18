@@ -41,7 +41,7 @@ class InfectionAction implements Action
 
         $changedPHPFiles = $repository->getIndexOperator()->getStagedFilesOfType('php');
         if (count($changedPHPFiles) > 0) {
-            array_walk($changedPHPFiles, function (&$item, $key) {
+            array_walk($changedPHPFiles, function (&$item, $key): void {
                 $item = escapeshellarg($item);
             });
             $infectionArgs[] = '--filter='.implode(',', $changedPHPFiles);
@@ -51,18 +51,18 @@ class InfectionAction implements Action
         if (!$result->isSuccessful()) {
             $errorMessage = '<error>Running Infection failed!</error>';
 
-            if (!empty($result->getStdOut())) {
+            if ($result->getStdOut() !== '') {
                 $errorMessage .= PHP_EOL . $result->getStdOut();
             }
 
-            if (!empty($result->getStdErr())) {
+            if ($result->getStdErr() !== '') {
                 $errorMessage .= PHP_EOL . $result->getStdErr();
             }
 
             throw new ActionFailed($errorMessage);
         }
 
-        if (!empty($result->getStdOut())) {
+        if ($result->getStdOut() !== '') {
             $io->write($result->getStdOut());
         }
     }
