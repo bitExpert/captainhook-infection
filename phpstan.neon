@@ -1,11 +1,8 @@
 parameters:
-    level: max
+    level: 8
     fileExtensions:
         - php
     paths:
         - src/bitExpert
         - tests/bitExpert
-    ignoreErrors:
-        -
-            message: '~Parameter \#1 \$options of class CaptainHook\\App\\Config\\Options constructor expects array~'
-            path: tests/bitExpert/CaptainHook/Infection/InfectionActionUnitTest.php
+
