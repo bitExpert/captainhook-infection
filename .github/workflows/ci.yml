@@ -17,11 +17,6 @@ jobs:
         include:
           - operating-system: 'ubuntu-latest'
             php-versions: '8.1'
-            composer-prefer-lowest: true
-            coveralls: false
-          - operating-system: 'ubuntu-latest'
-            php-versions: '8.1'
-            composer-prefer-lowest: false
             coveralls: true
     steps:
       - name: Checkout repo
@@ -36,14 +31,6 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install
-
-      - name: Install lowest CaptainHookPHP version
-        if: matrix.composer-prefer-lowest == true
-        run: |
-          composer remove --dev captainhook/plugin-composer
-          composer remove captainhook/captainhook
-          composer require --prefer-lowest captainhook/captainhook
-          composer require --prefer-lowest --dev captainhook/plugin-composer
 
       - name: Composer license check
         run: composer check-license
