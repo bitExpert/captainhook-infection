@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.6.0
+
+### Added
+
+- [#10](https://github.com/bitexpert/captainhook-infection/pull/10) Allow the plugin to run with PHP 8.1
+- [#9](https://github.com/bitexpert/captainhook-infection/pull/9) Upgrade Composer dependencies
+- [#8](https://github.com/bitexpert/captainhook-infection/pull/8) Add PHPStan PHPUnit extension
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.5.0
 
 ### Added
