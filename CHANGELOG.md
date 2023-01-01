@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.7.0
+
+### Added
+
+- [#11](https://github.com/bitexpert/captainhook-infection/pull/11) PHP 8.2 compatibility
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.6.0
 
 ### Added
