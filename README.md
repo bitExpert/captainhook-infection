@@ -6,7 +6,7 @@ against the changed files will result in a faster execution of Infection which i
 
 [![Build Status](https://github.com/bitExpert/captainhook-infection/workflows/ci/badge.svg?branch=master)](https://github.com/bitExpert/captainhook-infection/actions)
 [![Coverage Status](https://coveralls.io/repos/github/bitExpert/captainhook-infection/badge.svg?branch=master)](https://coveralls.io/github/bitExpert/captainhook-infection?branch=master)
-[![Infection MSI](https://badge.stryker-mutator.io/github.com/bitExpert/captainhook-infection/master)](https://infection.github.io)
+![Mastodon Follow](https://img.shields.io/mastodon/follow/109408681246972700?domain=https://rheinneckar.social)
 
 ## Installation
 
